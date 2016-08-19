@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<root>
+
+	<appdef>
+		<!--
+			アプリケーション宣言
+			主要なアプリは、以下のURLに定義有り
+			https://github.com/tekezo/Karabiner/blob/master/src/core/server/Resources/appdef.xml
+
+			Kinzaのみ追加
+		-->
+		<appname>Kinza</appname>
+		<equal>jp.kinza.Kinza</equal>
+	</appdef>
+
+	<item>
+		<name>マウスの戻る・進むボタン対応</name>
+		<identifier>private.mouse.goback</identifier>
+		<not>REMOTEDESKTOPCONNECTION</not>
+		<autogen>
+			__KeyToKey__
+			PointingButton::BUTTON4,
+			KeyCode::JIS_BRACKET_LEFT, ModifierFlag::COMMAND_L
+		</autogen>
+		<autogen>
+			__KeyToKey__
+			PointingButton::BUTTON5,
+			KeyCode::JIS_BRACKET_RIGHT, ModifierFlag::COMMAND_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>マウスのMission Control、チルトホイール左右ボタン対応(RDC利用時も有効に)</name>
+		<identifier>private.mouse.wheel</identifier>
+		<autogen>
+			__KeyToKey__
+			PointingButton::BUTTON6,
+			KeyCode::CURSOR_UP, ModifierFlag::CONTROL_L
+		</autogen>
+		<autogen>
+			__ScrollWheelToKey__
+			ScrollWheel::LEFT,
+			KeyCode::CURSOR_LEFT, ModifierFlag::CONTROL_L
+		</autogen>
+		<autogen>
+			__ScrollWheelToKey__
+			ScrollWheel::RIGHT,
+			KeyCode::CURSOR_RIGHT, ModifierFlag::CONTROL_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>Command + E で Finderを表示</name>
+		<identifier>private.openfinder</identifier>
+		<not>REMOTEDESKTOPCONNECTION</not>
+		<autogen>
+			__KeyToKey__
+			KeyCode::E, ModifierFlag::COMMAND_L,
+			KeyCode::F3, ModifierFlag::CONTROL_L, KeyCode::ENTER
+		</autogen>
+	</item>
+
+	<item>
+		<name>Command + Q で Finderを隠す</name>
+		<identifier>private.closefinder</identifier>
+		<only>FINDER</only>
+		<autogen>
+			__KeyToKey__
+			KeyCode::Q, ModifierFlag::COMMAND_L,
+			KeyCode::W, ModifierFlag::COMMAND_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>Command + L で スクリーンロックする(RDC利用時も有効に)</name>
+		<identifier>private.screenlock</identifier>
+		<autogen>
+			__KeyToKey__
+			KeyCode::L, ModifierFlag::COMMAND_L,
+			KeyCode::VK_CONSUMERKEY_POWER, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>PrintScreen で スクリーンショット取得</name>
+		<identifier>private.printscreen</identifier>
+		<not>REMOTEDESKTOPCONNECTION</not>
+		<autogen>
+			__KeyToKey__
+			KeyCode::F13, ModifierFlag::OPTION_L,
+			KeyCode::4, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+		</autogen>
+		<autogen>
+			__KeyToKey__
+			KeyCode::F13,
+			KeyCode::3, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>Home/Endキーを有効にする</name>
+		<identifier>private.home_end</identifier>
+		<not>REMOTEDESKTOPCONNECTION</not>
+		<autogen>
+			__KeyToKey__
+			KeyCode::HOME,
+			KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L
+		</autogen>
+		<autogen>
+			__KeyToKey__
+			KeyCode::END,
+			KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>(Chrome)F5でリロード,F12でデベロッパーツール起動</name>
+		<identifier>private.chrome.opendevtool</identifier>
+
+		<!-- ブラウザを指定 Firefoxはデフォルト有効だった -->
+		<only>GOOGLE_CHROME, Kinza</only>
+		<autogen>
+			__KeyToKey__
+			KeyCode::F12,
+			KeyCode::I, ModifierFlag::COMMAND_L | ModifierFlag::OPTION_L
+		</autogen>
+
+		<!-- F5 + Ctrl を F5 単体より先に書かないと動作しない -->
+		<autogen>
+			__KeyToKey__
+			KeyCode::F5, ModifierFlag::CONTROL_L,
+			KeyCode::R, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+		</autogen>
+		<autogen>
+			__KeyToKey__
+			KeyCode::F5,
+			KeyCode::R, ModifierFlag::COMMAND_L
+		</autogen>
+	</item>
+
+	<item>
+		<name>RDCで無変換・変換でIMEのON/OFFする(ATOKの設定も必要)</name>
+		<identifier>private.rdc.ime</identifier>
+		<only>REMOTEDESKTOPCONNECTION</only>
+
+		<!-- ATOK側で Ctrl + Shift + 8 で日本語入力ONにする設定が必要-->
+		<!-- ATOK側で Ctrl + Shift + 9 で日本語入力OFFにする設定が必要-->
+		<autogen>
+			__KeyToKey__
+			KeyCode::JIS_KANA,
+			KeyCode::8, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L
+		</autogen>
+		<autogen>
+			__KeyToKey__
+			KeyCode::JIS_EISUU,
+			KeyCode::9, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L
+		</autogen>
+	</item>
+</root>
